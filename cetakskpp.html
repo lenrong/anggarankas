@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cetak Mandiri SKPP - BPKAD Kabupaten Mamuju</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .back-link {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .back-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .section-title {
+            color: #1a2980;
+            font-size: 28px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f4f8;
+            font-weight: 600;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #444;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .login-container, .result-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .result-container {
+            max-width: 1000px;
+        }
+        
+        .login-title {
+            color: #1a2980;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #1a2980;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 41, 128, 0.1);
+        }
+        
+        .info-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #26d0ce;
+        }
+        
+        .info-box p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 0;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 41, 128, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-3px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+            width: auto;
+        }
+        
+        .skpp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .skpp-table th {
+            background-color: #f8f9fa;
+            color: #1a2980;
+            font-weight: 600;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .skpp-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eaeaea;
+            vertical-align: middle;
+        }
+        
+        .skpp-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a2980;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .logout-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .back-link {
+                position: static;
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .skpp-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <a href="index.html" class="back-link">
+                <span>←</span> Kembali ke Portal
+            </a>
+            <h1>Cetak Mandiri SKPP</h1>
+            <p>Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD) Kabupaten Mamuju</p>
+        </div>
+        
+        <div class="content">
+            <h2 class="section-title">Surat Keterangan Penghentian Pembayaran (SKPP)</h2>
+            
+            <div class="intro-text">
+                Layanan cetak mandiri SKPP memungkinkan Anda untuk mencetak Surat Keterangan Penghentian Pembayaran 
+                secara mandiri tanpa perlu datang ke kantor. Masukkan NIP Anda untuk mengakses SKPP.
+            </div>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="login-container">
+                <h3 class="login-title">Masukkan NIP Anda</h3>
+                <div id="errorMessage" class="error-message" style="display:none;"></div>
+                
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="nip">NIP (Nomor Induk Pegawai)</label>
+                        <input type="text" id="nip" class="form-control" placeholder="Masukkan NIP Anda (contoh: 196512311992102007)" required>
+                    </div>
+                    
+                    <div class="info-box">
+                        <p><strong>Contoh NIP yang bisa dicoba:</strong></p>
+                        <p>196512311992102007</p>
+                        <p>199708252023212004</p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">
+                        Cari SKPP Saya
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Results Section (initially hidden) -->
+            <div id="resultsSection" class="result-container" style="display:none;">
+                <h3 class="login-title">Data SKPP Anda</h3>
+                <div id="resultsMessage"></div>
+                
+                <div id="loadingIndicator" class="loading" style="display:none;">
+                    <div class="loading-spinner"></div>
+                    <p>Memuat data SKPP...</p>
+                </div>
+                
+                <div id="noDataMessage" class="no-data" style="display:none;">
+                    <p>Tidak ditemukan data SKPP untuk NIP yang Anda masukkan.</p>
+                    <p>Silakan periksa kembali NIP yang dimasukkan atau hubungi Bidang Perbendaharaan BPKAD Kabupaten Mamuju.</p>
+                    <button id="backToSearch" class="btn btn-secondary" style="margin-top: 20px; width: auto;">
+                        Kembali ke Pencarian
+                    </button>
+                </div>
+                
+                <div id="skppResults">
+                    <table class="skpp-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Pegawai</th>
+                                <th>Jenis SKPP</th>
+                                <th>Tanggal Pembuatan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="skppTableBody">
+                            <!-- Data akan diisi oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="logout-btn">
+                    <button id="logoutBtn" class="btn btn-secondary" style="width: auto;">
+                        Keluar / Cari Lagi
+                    </button>
+                </div>
+            </div>
+            
+            <div class="info-section" style="margin-top: 40px;">
+                <div class="info-title">Informasi Penting</div>
+                <div class="info-text">
+                    <p>
+                        <strong>Surat Keterangan Penghentian Pembayaran (SKPP)</strong> adalah dokumen resmi yang dikeluarkan oleh 
+                        BPKAD Kabupaten Mamuju untuk memberhentikan pembayaran kepada pegawai dengan alasan tertentu 
+                        seperti pensiun, pindah tugas, atau alasan lainnya.
+                    </p>
+                    <p>
+                        Layanan cetak mandiri ini merupakan bagian dari transformasi digital BPKAD Kabupaten Mamuju 
+                        untuk memberikan kemudahan akses layanan bagi pegawai tanpa harus datang ke kantor.
+                    </p>
+                    <p>
+                        Jika mengalami kendala dalam mengakses atau mencetak SKPP, silakan menghubungi 
+                        Bidang Perbendaharaan BPKAD Kabupaten Mamuju.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>© 2025 Bidang Perbendaharaan BPKAD Kabupaten Mamuju</div>
+            <div style="margin-top: 5px; font-size: 13px;">Layanan Cetak Mandiri SKPP - Versi 2.0 (Password: NIP)</div>
+        </div>
+    </div>
+
+    <script>
+        // URL Google Sheets CSV
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0Zaoq_XCgcVYjrHJ1P2sterBsPyde1un3crhFBIaWxj4ZrkvL-GI6DINK9WS-GGRsE4wOkgtf0lCO/pub?output=csv';
+        
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const resultsSection = document.getElementById('resultsSection');
+        const loginFormElement = document.getElementById('loginFormElement');
+        const errorMessage = document.getElementById('errorMessage');
+        const resultsMessage = document.getElementById('resultsMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const noDataMessage = document.getElementById('noDataMessage');
+        const skppResults = document.getElementById('skppResults');
+        const skppTableBody = document.getElementById('skppTableBody');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const backToSearch = document.getElementById('backToSearch');
+        
+        // Debug flag
+        const DEBUG = true;
+        
+        // Format tanggal untuk tampilan
+        function formatDisplayDate(dateString) {
+            if (!dateString) return '-';
+            
+            try {
+                // Tanggal dari Google Sheets biasanya dalam format MM/DD/YYYY HH:MM:SS
+                // Pisahkan bagian tanggal dan waktu
+                const dateTimeParts = dateString.split(' ');
+                const datePart = dateTimeParts[0];
+                
+                // Pisahkan berdasarkan / atau -
+                let day, month, year;
+                
+                if (datePart.includes('/')) {
+                    const parts = datePart.split('/');
+                    month = parseInt(parts[0], 10);
+                    day = parseInt(parts[1], 10);
+                    year = parseInt(parts[2], 10);
+                } else if (datePart.includes('-')) {
+                    const parts = datePart.split('-');
+                    year = parseInt(parts[0], 10);
+                    month = parseInt(parts[1], 10);
+                    day = parseInt(parts[2], 10);
+                } else {
+                    return dateString;
+                }
+                
+                // Buat objek Date
+                const date = new Date(year, month - 1, day);
+                
+                // Format ke DD/MM/YYYY
+                return date.toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            } catch (error) {
+                console.error('Error formatting date:', error, dateString);
+                return dateString;
+            }
+        }
+        
+        // Parse CSV dengan lebih robust
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            const result = [];
+            
+            if (lines.length === 0) return result;
+            
+            // Ambil header (baris pertama)
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            // Log untuk debugging
+            if (DEBUG) {
+                console.log('Headers:', headers);
+            }
+            
+            // Proses setiap baris data
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                // Parse baris CSV dengan memperhatikan koma di dalam field
+                const row = [];
+                let current = '';
+                let inQuotes = false;
+                
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    const nextChar = line[j + 1];
+                    
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                
+                // Tambahkan field terakhir
+                row.push(current.trim());
+                
+                // Hapus tanda kutip dari setiap field
+                const cleanRow = row.map(field => field.replace(/^"|"$/g, ''));
+                
+                // Pastikan jumlah kolom sesuai dengan header
+                if (cleanRow.length >= headers.length) {
+                    const entry = {};
+                    headers.forEach((header, index) => {
+                        entry[header] = cleanRow[index] || '';
+                    });
+                    
+                    // Debug: log entry yang diparsing
+                    if (DEBUG && i <= 5) {
+                        console.log(`Row ${i}:`, entry);
+                    }
+                    
+                    result.push(entry);
+                }
+            }
+            
+            if (DEBUG) {
+                console.log('Total data parsed:', result.length);
+                console.log('Sample data:', result.slice(0, 2));
+            }
+            
+            return result;
+        }
+        
+        // Ambil data dari Google Sheets
+        async function fetchSKPPData() {
+            try {
+                loadingIndicator.style.display = 'block';
+                skppResults.style.display = 'none';
+                
+                if (DEBUG) console.log('Fetching data from:', SHEET_URL);
+                
+                // Tambahkan timestamp untuk menghindari cache
+                const urlWithTimestamp = `${SHEET_URL}&t=${Date.now()}`;
+                const response = await fetch(urlWithTimestamp);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const csvText = await response.text();
+                
+                if (DEBUG) {
+                    console.log('Raw CSV (first 500 chars):', csvText.substring(0, 500));
+                }
+                
+                // Parse CSV
+                const data = parseCSV(csvText);
+                
+                loadingIndicator.style.display = 'none';
+                return data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                loadingIndicator.style.display = 'none';
+                showError(`Terjadi kesalahan saat mengambil data: ${error.message}. Silakan coba lagi.`);
+                return [];
+            }
+        }
+        
+        // Normalisasi NIP - hapus spasi dan karakter non-digit
+        function normalizeNIP(nip) {
+            if (!nip) return '';
+            // Hapus semua spasi dan karakter non-digit
+            return nip.toString().replace(/\s/g, '').replace(/[^\d]/g, '');
+        }
+        
+        // Filter data berdasarkan NIP
+        function filterSKPPData(data, nip) {
+            const normalizedInputNIP = normalizeNIP(nip);
+            
+            if (DEBUG) {
+                console.log('Searching for NIP:', {
+                    normalizedInputNIP,
+                    rawNIP: nip
+                });
+            }
+            
+            const results = data.filter(item => {
+                // Normalisasi NIP dari database
+                const itemNIP = item.NIP || item.nip || item['NIP'] || '';
+                const normalizedItemNIP = normalizeNIP(itemNIP);
+                
+                if (DEBUG && itemNIP) {
+                    console.log('Comparing:', {
+                        itemNIP,
+                        normalizedItemNIP,
+                        matches: normalizedItemNIP === normalizedInputNIP
+                    });
+                }
+                
+                // Bandingkan NIP (tanpa memperhatikan spasi dan format)
+                return normalizedItemNIP === normalizedInputNIP;
+            });
+            
+            if (DEBUG) {
+                console.log('Found', results.length, 'results');
+                if (results.length > 0) {
+                    console.log('Results:', results);
+                }
+            }
+            
+            return results;
+        }
+        
+        // Tampilkan data dalam tabel
+        function displaySKPPData(data) {
+            skppTableBody.innerHTML = '';
+            
+            if (data.length === 0) {
+                skppResults.style.display = 'none';
+                noDataMessage.style.display = 'block';
+                resultsMessage.innerHTML = `
+                    <div class="error-message">
+                        Tidak ditemukan data SKPP untuk NIP yang Anda masukkan.
+                        <br><br>
+                        <strong>Tips:</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Pastikan NIP sesuai dengan data di SKPP</li>
+                            <li>Contoh NIP: 196512311992102007 (tanpa spasi)</li>
+                            <li>Silakan coba contoh NIP: 196512311992102007 atau 199708252023212004</li>
+                        </ul>
+                    </div>
+                `;
+                return;
+            }
+            
+            noDataMessage.style.display = 'none';
+            skppResults.style.display = 'block';
+            
+            resultsMessage.innerHTML = `
+                <div class="success-message">
+                    Ditemukan <strong>${data.length} SKPP</strong> untuk NIP yang Anda masukkan.
+                    <br><strong>Nama:</strong> ${data[0]['Nama Pegawai'] || data[0]['Nama Pegawai '] || 'Tidak tercantum'}
+                </div>
+            `;
+            
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                
+                // Format link Google Drive untuk langsung ke file
+                let fileUrl = item['FILE SKPP'] || item['FILE SKPP '] || '';
+                
+                // Debug: tampilkan URL asli
+                if (DEBUG) console.log('Original file URL:', fileUrl);
+                
+                // Ubah link Google Drive untuk pratinjau langsung
+                if (fileUrl.includes('open?id=')) {
+                    const fileId = fileUrl.split('open?id=')[1];
+                    fileUrl = `https://drive.google.com/file/d/${fileId}/view`;
+                } else if (fileUrl.includes('/d/')) {
+                    // Jika sudah dalam format /d/FILE_ID/view
+                    const match = fileUrl.match(/\/d\/([^\/]+)/);
+                    if (match && match[1]) {
+                        fileUrl = `https://drive.google.com/file/d/${match[1]}/view`;
+                    }
+                }
+                
+                if (DEBUG) console.log('Processed file URL:', fileUrl);
+                
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item['Nama Pegawai'] || item['Nama Pegawai '] || '-'}</td>
+                    <td>${item['Jenis SKPP'] || item['Jenis SKPP '] || '-'}</td>
+                    <td>${formatDisplayDate(item['Timestamp'] || item['Timestamp '])}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="${fileUrl}" target="_blank" class="btn btn-primary btn-sm">
+                                Lihat SKPP
+                            </a>
+                            <button onclick="printSKPP('${fileUrl}')" class="btn btn-success btn-sm">
+                                Cetak SKPP
+                            </button>
+                        </div>
+                    </td>
+                `;
+                
+                skppTableBody.appendChild(row);
+            });
+        }
+        
+        // Fungsi untuk mencetak SKPP
+        window.printSKPP = function(fileUrl) {
+            if (!fileUrl) {
+                alert('Tidak dapat mencetak SKPP. Link tidak tersedia.');
+                return;
+            }
+            
+            // Buka file di tab baru untuk dicetak
+            const printWindow = window.open(fileUrl, '_blank');
+            
+            if (printWindow) {
+                // Set timeout untuk memastikan halaman terbuka sebelum mencetak
+                setTimeout(() => {
+                    printWindow.print();
+                }, 1000);
+            } else {
+                alert('Popup diblokir. Silakan izinkan popup untuk halaman ini.');
+            }
+        };
+        
+        // Fungsi untuk menampilkan error
+        function showError(message) {
+            errorMessage.innerHTML = message;
+            errorMessage.style.display = 'block';
+            
+            // Sembunyikan error setelah 5 detik
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Event listener untuk form login
+        loginFormElement.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const nip = document.getElementById('nip').value.trim();
+            
+            // Validasi input
+            if (!nip) {
+                showError('Harap masukkan NIP Anda.');
+                return;
+            }
+            
+            // Sembunyikan form login, tampilkan hasil
+            loginForm.style.display = 'none';
+            resultsSection.style.display = 'block';
+            
+            // Tampilkan pesan loading
+            resultsMessage.innerHTML = '<div class="loading">Mencari data SKPP...</div>';
+            skppResults.style.display = 'none';
+            noDataMessage.style.display = 'none';
+            
+            // Ambil dan filter data
+            const allData = await fetchSKPPData();
+            const filteredData = filterSKPPData(allData, nip);
+            
+            // Tampilkan data
+            displaySKPPData(filteredData);
+        });
+        
+        // Event listener untuk logout/kembali
+        logoutBtn.addEventListener('click', function() {
+            // Reset form
+            loginFormElement.reset();
+            
+            // Tampilkan form login, sembunyikan hasil
+            resultsSection.style.display = 'none';
+            loginForm.style.display = 'block';
+            
+            // Sembunyikan pesan error jika ada
+            errorMessage.style.display = 'none';
+        });
+        
+        // Event listener untuk tombol kembali ke pencarian
+        backToSearch.addEventListener('click', function() {
+            // Reset form
+            loginFormElement.reset();
+            
+            // Tampilkan form login, sembunyikan hasil
+            resultsSection.style.display = 'none';
+            loginForm.style.display = 'block';
+            noDataMessage.style.display = 'none';
+            
+            // Sembunyikan pesan error jika ada
+            errorMessage.style.display = 'none';
+        });
+        
+        // Inisialisasi
+        window.addEventListener('DOMContentLoaded', function() {
+            // Fokus ke input NIP
+            document.getElementById('nip').focus();
+            
+            // Untuk testing: isi otomatis dengan contoh data
+            if (DEBUG) {
+                // Uncomment untuk testing otomatis
+                // document.getElementById('nip').value = '196512311992102007';
+            }
+        });
+    </script>
+</body>
+</html>
